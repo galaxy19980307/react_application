@@ -1,23 +1,25 @@
 import React from "react";
+import s from './Profile.module.css'
 
 const Profile = () => {
     return (
-        <div className='content'>
+        <div className={s.content}>
             <div>
-                <img src= 'https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-romantic-beauty-beautiful-background-gradient-background-blue-background-image_20387.jpg'/>
+                <img
+                    src='https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-romantic-beauty-beautiful-background-gradient-background-blue-background-image_20387.jpg'/>
             </div>
-            <div>
+            <div className={s.item}>
                 Avatar + Description
             </div>
-            <div>
+            <div className={s.item}>
                 My posts
-                <div>
+                <div className={s.item}>
                     New post
                 </div>
-                <div>
+                <div className={s.item}>
                     Post 1
                 </div>
-                <div>
+                <div className={s.item}>
                     Post 2
                 </div>
             </div>

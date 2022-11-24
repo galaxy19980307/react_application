@@ -10,23 +10,6 @@
     grid-template-columns: 100px 10fr;
     /*grid-gap: 2vw;*/
 }
-.header{
-grid-area: h;
-    background-color: darkorange;
-}
-.header img{
-    width: 100px;
-}
 
-.nav{
-    grid-area: n;
-    background-color: darkorange;
-}
 
-.content{
-    grid-area: a;
-}
-.content img{
-    width: 1400px;
-    height: 200px;
-}
+

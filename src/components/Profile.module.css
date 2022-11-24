@@ -1,0 +1,10 @@
+.content{
+    grid-area: a;
+}
+.content img{
+    width: 1400px;
+    height: 200px;
+}
+.item {
+    color: black;
+}
