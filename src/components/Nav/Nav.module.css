@@ -1,0 +1,28 @@
+.nav {
+    grid-area: n;
+    background-color: darkorange;
+}
+
+
+.item.active {
+    color: blue;
+    font-family: "Arial Black";
+}
+
+.item.colormessages {
+    color: red;
+    font-family: "Arial Black";
+}
+
+.item.colornews {
+    color: gold;
+    font-family: "Arial Black";
+}
+.item.colormusic {
+    color: aqua;
+    font-family:"Arial Black";
+}
+.item.colorsettings {
+    color: darkmagenta;
+    font-family:"Arial Black";
+}
