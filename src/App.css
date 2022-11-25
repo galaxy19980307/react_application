@@ -1,4 +1,4 @@
-.app-wrapper{
+.app-wrapper {
     margin: auto;
     display: grid;
     width: 1500px;
@@ -11,5 +11,9 @@
     /*grid-gap: 2vw;*/
 }
 
+.app-wrapper-content {
+    grid-area: a;
+    background-color: gold;
+}
 
 
