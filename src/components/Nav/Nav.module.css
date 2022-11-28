@@ -1,26 +1,15 @@
 .nav {
     grid-area: n;
     background-color: darkorange;
-}
-.item.active {
-    color: blue;
-    font-family: "Arial Black";
+    padding: 20px;
 }
 
-.item.colormessages {
-    color: red;
+.item a {
+    color: yellow;
     font-family: "Arial Black";
+    text-decoration: none;
 }
 
-.item.colornews {
-    color: gold;
-    font-family: "Arial Black";
-}
-.item.colormusic {
-    color: aqua;
-    font-family:"Arial Black";
-}
-.item.colorsettings {
-    color: darkmagenta;
-    font-family:"Arial Black";
+.item a.activeLink {
+    color: darkorchid;
 }
