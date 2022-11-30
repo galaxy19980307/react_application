@@ -1,3 +1,6 @@
 .posts {
-    border-style: double;
+    margin-top: 10px;
+}
+.postsStyle{
+    padding: 10px;
 }
