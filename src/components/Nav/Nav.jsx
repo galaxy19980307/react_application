@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 const Nav = () => {
 
     const getClassName = ({isActive}) => {
-        return isActive ? s.activeLink: s.item
+        return isActive ? s.activeLink : s.item
     }
     return (
         <nav className={s.nav}>

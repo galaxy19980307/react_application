@@ -4,7 +4,6 @@ import Like from "../../../Like/Like";
 
 
 const Post = (props) => {
-    console.log(props);
     return (
         <div>
             <div className={s.item}>
