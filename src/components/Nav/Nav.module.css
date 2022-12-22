@@ -13,3 +13,12 @@
 .item a.activeLink {
     color: darkcyan;
 }
+.friends {
+    color: green;
+    font-family: "Arial Black";
+}
+.friend {
+    color: yellow;
+    font-family: "Bad Script";
+    grid-template-rows: initial;
+}
