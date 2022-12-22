@@ -7,7 +7,7 @@ let state = {
             {id: 2, message: 'Are you here?', likeQuantity: 3},
             {id: 3, message: 'Nobody love me!', likeQuantity: 0}
         ],
-        newPostText: ['Whatsssaaap']
+        newPostText: 'Whatsssaaap'
     },
     dialogsPage: {
         dialogsData: [
@@ -30,20 +30,24 @@ let state = {
         {friend: 'Mum  '}
     ]
 }
-window.state= state;
 export let addPost = () => {
+    // функция добавляет новый пост (объект) в список (массив) с постами (объектами) и обнуляет newPostText
     let newPost = {
         id: 4,
         message: state.profilePage.newPostText,
         likeQuantity: 0
     }
     state.profilePage.postsData.push(newPost);
-    state.profilePage.newPostText=''
+    state.profilePage.newPostText = ''
     rerenderEntireTree(state);
 }
-export let updateNewPostText= (newText) => {
+export let updateNewPostText = (newText) => {
+    // функция сохраняет в стэйт новое введенное значение, которое ввели в текстэрии
     state.profilePage.newPostText = newText;
     rerenderEntireTree(state);
 }
 
 export default state;
+
+
+

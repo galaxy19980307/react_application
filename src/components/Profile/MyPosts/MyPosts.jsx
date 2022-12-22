@@ -6,24 +6,23 @@ const MyPosts = (props) => {
 
     let postsElements = props.postsData.map(p => <Post message={p.message} likeQuantity={p.likeQuantity}/>)
 
-    let newPostElement = React.createRef();
+    let newPostElement = React.createRef(); // создали переменную с объектом реф (реф объект следит за состоянием объекта)
 
     const handleAddPost = () => {
         props.addPost();
     }
 
-    let onPostChange= () => {
-        let text= newPostElement.current.value;
-        props.updateNewPostText(text);
-
-
+    const handleChangePost = () => {
+        let newText = newPostElement.current.value;  // получает значение(текст) из текстэрии
+        props.updateNewPostText(newText);
     }
+
     return (
         <div className={s.postsStyle}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
+                    <textarea onChange={handleChangePost} ref={newPostElement} value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={handleAddPost}>Add post</button>
