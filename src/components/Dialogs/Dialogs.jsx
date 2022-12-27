@@ -11,13 +11,16 @@ const Dialogs = (props) => {
     let messagesElements = props.dialogsPage.messagesData
         .map(message => <MessageItem message={message.message}/>);
 
-    let newMessage= React.createRef();
+    let newMessageElement= React.createRef();
 
-    let addMessage= () => {
-        let message= newMessage.current.value;
-        alert(message)
+    const handleAddMessage = () => {
+        props.addMessage();
     }
 
+    const handleChangeMessage = () => {
+        let newMessage = newMessageElement.current.value;  // получает значение(текст) из текстэрии
+        props.updateNewMessageText(newMessage);
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -27,10 +30,10 @@ const Dialogs = (props) => {
                 {messagesElements}
                 <div>
                     <div>
-                        <textarea ref={newMessage}></textarea>
+                        <textarea onChange={handleChangeMessage} ref={newMessageElement} value={props.newMessageText}/>
                     </div>
                     <div>
-                        <button onClick={addMessage}>
+                        <button onClick={handleAddMessage}>
                             Add message
                         </button>
                     </div>
