@@ -2,6 +2,7 @@ import React from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
+import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../Redux/state";
 
 const Dialogs = (props) => {
 
@@ -11,16 +12,19 @@ const Dialogs = (props) => {
     let messagesElements = props.dialogsPage.messagesData
         .map(message => <MessageItem message={message.message}/>);
 
-    let newMessageElement= React.createRef();
+    let newMessageElement = React.createRef();
 
     const handleAddMessage = () => {
-        props.addMessage();
+        props.dispatch(addMessageActionCreator());
     }
 
     const handleChangeMessage = () => {
+        debugger;
         let newMessage = newMessageElement.current.value;  // получает значение(текст) из текстэрии
-        props.updateNewMessageText(newMessage);
+        let action= updateNewMessageTextActionCreator(newMessage);
+        props.dispatch(action);
     }
+    console.log(props)
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -30,7 +34,7 @@ const Dialogs = (props) => {
                 {messagesElements}
                 <div>
                     <div>
-                        <textarea onChange={handleChangeMessage} ref={newMessageElement} value={props.newMessageText}/>
+                        <textarea onChange={handleChangeMessage} ref={newMessageElement} value={props.dialogsPage.newMessageText}/>
                     </div>
                     <div>
                         <button onClick={handleAddMessage}>

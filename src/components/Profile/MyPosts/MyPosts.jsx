@@ -1,6 +1,7 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/state";
 
 const MyPosts = (props) => {
 
@@ -9,12 +10,12 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef(); // создали переменную с объектом реф (реф объект следит за состоянием объекта)
 
     const handleAddPost = () => {
-        props.addPost();
+        props.dispatch(addPostActionCreator());
     }
-
     const handleChangePost = () => {
         let newText = newPostElement.current.value;  // получает значение(текст) из текстэрии
-        props.updateNewPostText(newText);
+        let action = updateNewPostTextActionCreator(newText);
+        props.dispatch(action);
     }
 
     return (

@@ -1,5 +1,10 @@
-let store = {
+const ADD_POST= 'ADD-POST';
+const UPDATE_NEW_POST_TEXT='UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE= 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT= 'UPDATE-NEW-MESSAGE-TEXT';
 
+
+let store = {
     _state: {
         profilePage: {
             postsData: [
@@ -31,55 +36,61 @@ let store = {
             {friend: 'Mum  '}
         ]
     },
+    _callSubscriber() {
+        console.log('State Changed');
+    },
 
     getState() {
         return this._state
     },
-    _callSubscriber() {
-        console.log('State Changed');
-    },
-    addPost() {
-        // функция добавляет новый пост (объект) в список (массив) с постами (объектами) и обнуляет newPostText
-        if (this._state.profilePage.newPostText) {
-            let newPost = {
-                id: 4,
-                message: this._state.profilePage.newPostText,
-                likeQuantity: 0
-            }
-            this._state.profilePage.postsData.push(newPost);
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber(this._state);
-        }
-    },
-    updateNewPostText(newText) {
-        // функция сохраняет в стэйт новое введенное значение, которое ввели в текстэрии
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
     subscribe(observer) {
         this._callSubscriber = observer;// паттерн observer - наблюдатель (наблюдает за изменениями)
     },
-    addMessage() {
-        if (this._state.dialogsPage.newMessageText) {
-            // функция добавляет новое сообщение (объект) в список (массив) с сообщениями (объектами) и обнуляет newMessageText
-            let newMessage = {
-                id: 5,
-                message: this._state.dialogsPage.newMessageText,
-            }
-            this._state.dialogsPage.messagesData.push(newMessage);
-            this._state.dialogsPage.newMessageText = ''
-            this._callSubscriber(this._state);
-        }
 
-    },
-    updateNewMessageText(newMessage) {
-        // функция сохраняет в стэйт новое введенное значение, которое ввели в текстэрии
-        this._state.dialogsPage.newMessageText = newMessage;
-        this._callSubscriber(this._state);
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                if (this._state.profilePage.newPostText) {
+                    let newPost = {
+                        id: 4,
+                        message: this._state.profilePage.newPostText,
+                        likeQuantity: 0
+                    }
+                    this._state.profilePage.postsData.push(newPost);
+                    this._state.profilePage.newPostText = ' '
+                    this._callSubscriber(this._state);
+                }
+                break;
+            case 'UPDATE-NEW-POST-TEXT' :
+                this._state.profilePage.newPostText = action.newText;
+                this._callSubscriber(this._state);
+                break;
+            case 'ADD-MESSAGE':
+                if (this._state.dialogsPage.newMessageText) {
+                    // функция добавляет новое сообщение (объект) в список (массив) с сообщениями (объектами) и обнуляет newMessageText
+                    let newMessage = {
+                        id: 5,
+                        message: this._state.dialogsPage.newMessageText,
+                    }
+                    this._state.dialogsPage.messagesData.push(newMessage);
+                    this._state.dialogsPage.newMessageText = ''
+                    this._callSubscriber(this._state);
+                }
+                break;
+            case 'UPDATE-NEW-MESSAGE-TEXT':
+                // функция сохраняет в стэйт новое введенное значение, которое ввели в текстэрии
+                this._state.dialogsPage.newMessageText = action.newMessage;
+                this._callSubscriber(this._state);
+                break;
+        }
     },
 }
-
 export default store;
+
+export const addPostActionCreator= () => ({type: ADD_POST});
+export const updateNewPostTextActionCreator=(newText) =>({type: UPDATE_NEW_POST_TEXT, newText});
+export const addMessageActionCreator=()=> ({type: ADD_MESSAGE});
+export const updateNewMessageTextActionCreator=(newMessage) =>({type: UPDATE_NEW_MESSAGE_TEXT, newMessage});
 
 
 
