@@ -19,7 +19,8 @@ let store = {
                 {id: 1, name: 'Petr'},
                 {id: 2, name: 'Valentina'},
                 {id: 3, name: 'Mali'},
-                {id: 4, name: 'Mum'}
+                {id: 4, name: 'Mum'},
+                {id: 4, name: 'No name'}
             ],
             messagesData: [
                 {message: 'Hello, i love you!'},

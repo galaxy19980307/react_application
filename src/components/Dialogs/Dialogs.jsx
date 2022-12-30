@@ -21,7 +21,7 @@ const Dialogs = (props) => {
     const handleChangeMessage = () => {
         debugger;
         let newMessage = newMessageElement.current.value;  // получает значение(текст) из текстэрии
-        let action= updateNewMessageTextActionCreator(newMessage);
+        let action = updateNewMessageTextActionCreator(newMessage);
         props.dispatch(action);
     }
     console.log(props)
@@ -30,20 +30,19 @@ const Dialogs = (props) => {
             <div className={s.dialogsItems}>
                 {dialogsElements}
             </div>
-            <div className={s.messagesItems}>
-                {messagesElements}
+            <div>
+                <div className={s.messagesItems}>
+                    {messagesElements}
+                </div>
+                <div> <textarea placeholder={'Enter new message'} onChange={handleChangeMessage} ref={newMessageElement}
+                                value={props.dialogsPage.newMessageText}/>
+                </div>
                 <div>
-                    <div>
-                        <textarea onChange={handleChangeMessage} ref={newMessageElement} value={props.dialogsPage.newMessageText}/>
-                    </div>
-                    <div>
-                        <button onClick={handleAddMessage}>
-                            Add message
-                        </button>
-                    </div>
+                    <button onClick={handleAddMessage}>
+                        Add message
+                    </button>
                 </div>
             </div>
-
         </div>
     )
 }
