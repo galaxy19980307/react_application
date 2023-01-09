@@ -3,12 +3,9 @@ import s from './Nav.module.css';
 import {NavLink} from "react-router-dom";
 
 const Nav = (props) => {
-    let friends = props.listOfFriends.map((el) => (el.friend));
     const getClassName = ({isActive}) => {
         return isActive ? s.activeLink : s.item
     }
-    const ulStyle = {marginTop: '120px'}
-
     return (
         <nav className={s.nav}>
             <div className={s.item}>
@@ -25,12 +22,6 @@ const Nav = (props) => {
             </div>
             <div className={s.item}>
                 <NavLink to="/settings" className={getClassName}>Settings</NavLink>
-            </div>
-            <div style={ulStyle}>
-                <div className={s.friends}>Friends</div>
-                <div className={s.friend}>
-                    {friends}
-                </div>
             </div>
         </nav>
 
