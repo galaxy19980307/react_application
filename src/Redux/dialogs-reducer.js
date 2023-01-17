@@ -7,13 +7,13 @@ let initialState = {
         {id: 2, name: 'Valentina'},
         {id: 3, name: 'Mali'},
         {id: 4, name: 'Mum'},
-        {id: 4, name: 'No name'}
+        {id: 5, name: 'No name'}
     ],
     messagesData: [
-        {message: 'Hello, i love you!'},
-        {message: 'Hello, i love you too!'},
-        {message: 'Hello, baby!'},
-        {message: 'Hello!'}
+        {id: 1, message: 'Hello, i love you!'},
+        {id: 2, message: 'Hello, i love you too!'},
+        {id: 3, message: 'Hello, baby!'},
+        {id: 4, message: 'Hello!'}
     ],
     newMessageText: ''
 }
@@ -21,25 +21,26 @@ let initialState = {
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE: {
-            let stateCopy = {...state};
-            if (state.newMessageText) {
-                // функция добавляет новое сообщение (объект) в список (массив) с сообщениями (объектами) и обнуляет newMessageText
-                let newMessage = {
-                    id: 5,
-                    message: state.newMessageText,
-                }
-                stateCopy.messagesData = [...state.messagesData]
-                stateCopy.messagesData.push(newMessage);
-                stateCopy.newMessageText = ''
-            }
-            return stateCopy;
+            // функция добавляет новое сообщение (объект) в список (массив) с сообщениями (объектами) и обнуляет newMessageText
+            let newMessage = {
+                id: state.messagesData.length +1,
+                message: state.newMessageText,
+            };
+            return { // возвращается копия стейта
+                ...state,
+                messagesData: [...state.messagesData, newMessage],
+                newMessageText: ''
+            };
         }
-
         case UPDATE_NEW_MESSAGE_TEXT: {
             // функция сохраняет в стэйт новое введенное значение, которое ввели в текстэрии
             let stateCopy = {...state}
             stateCopy.newMessageText = action.newMessage;
             return stateCopy;
+            // return { // возвращается копия стейта
+            //     ...state,
+            //     newMessageText: action.newMessage
+            // };
         }
         default:
             return state;

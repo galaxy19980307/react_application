@@ -1,9 +1,14 @@
 .header {
-    grid-area: h;
+    padding: 30px;
+    text-align: center;
+    color: darkorange;
+    font-size: 30px;
     background-color: darkorange;
+
 }
 
 .header img {
     width: 110px;
-    height: 90px;
+    height: 100px;
+    background-color: darkorange;
 }

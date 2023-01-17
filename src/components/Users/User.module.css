@@ -1,0 +1,14 @@
+.user {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1rem;
+    max-width: 780px
+}
+.avatarUser img{
+    width: 170px;
+    height: 150px;
+}
+
+.followUser {
+    height: 10px;
+}

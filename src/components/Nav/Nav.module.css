@@ -1,24 +1,27 @@
 .nav {
+    display: grid;
     grid-area: n;
+    list-style-type: georgian;
+    margin: unset;
+    padding: 0;
+    width: 180px;
     background-color: darkorange;
-    padding: 20px;
+    position: relative;
+    display: table-cell;
 }
 
 .item a {
+    display: grid;
+    margin: unset;
     color: yellow;
-    font-family: "Arial Black";
+    padding: 8px 0 8px 16px;
     text-decoration: none;
+}
+.item a:hover {
+    background-color: peru;
+    color: white;
 }
 
 .item a.activeLink {
     color: darkcyan;
-}
-.friends {
-    color: green;
-    font-family: "Arial Black";
-}
-.friend {
-    color: yellow;
-    font-family: "Bad Script";
-    grid-template-rows: initial;
 }
