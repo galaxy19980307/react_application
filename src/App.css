@@ -1,7 +1,11 @@
 .app-wrapper {
     margin: auto;
     display: grid;
-    width: 1500px;
+    width: 1600px;
+    background-color: gold;
+
+
+
 
     grid-template-areas:
     "h h"
