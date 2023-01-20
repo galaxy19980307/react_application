@@ -44,7 +44,7 @@ const usersReducer = (state = initialState, action) => {
         case SET_USERS: {
             return {...state, users: [...state.users, ...action.users]}
         }
-        // другие варианты с мапом и иф
+         // другие варианты с мапом и иф
         // let stateCopy = {
         //     ...state,
         //     users: state.users.map(user => {

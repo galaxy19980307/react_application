@@ -7,7 +7,9 @@ const Post = (props) => {
     return (
         <div>
             <div className={s.item}>
-                <img alt='Фото профиля' src='avatar.jpg'/>
+                <div>
+                <img src={props.img} alt='Размеры не заданы'/>
+                </div>
                 {props.message}
             </div>
             <Like likeQuantity={props.likeQuantity}/>

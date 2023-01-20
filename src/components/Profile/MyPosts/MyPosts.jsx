@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 
 const MyPosts = (props) => {
 
-    let postsElements = props.profilePage.postsData.map(p => <Post key={p.id} message={p.message} likeQuantity={p.likeQuantity}/>)
+    let postsElements = props.profilePage.postsData.map(p => <Post key={p.id} message={p.message} likeQuantity={p.likeQuantity} img={p.img}/>)
 
     let newPostElement = React.createRef(); // создали переменную с объектом реф (реф объект следит за состоянием объекта)
 
@@ -23,7 +23,7 @@ const MyPosts = (props) => {
                 <div>
                     <textarea onChange={onChangePost} ref={newPostElement} value={props.profilePage.newPostText}/>
                 </div>
-                <div>
+                    <div>
                     <button onClick={onAddPost}>Add post</button>
                 </div>
             </div>
