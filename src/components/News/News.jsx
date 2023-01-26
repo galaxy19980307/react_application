@@ -1,6 +1,5 @@
 import React from "react";
 import s from './News.module.css'
-import Post from "../Profile/MyPosts/Post/Post";
 import New from "./New/New";
 
 const News = (props) => {
@@ -28,7 +27,7 @@ const News = (props) => {
                     <button onClick={onAddNews}>Add news</button>
                 </div>
             </div>
-            <div>
+            <div className={s.news}>
                 {newsElements}
             </div>
         </div>

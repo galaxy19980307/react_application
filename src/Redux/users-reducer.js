@@ -23,7 +23,7 @@ const usersReducer = (state = initialState, action) => {
             let stateCopy = {...state}
             stateCopy.users = stateCopy.users.map(user => {
                 if (action.userId === user.id) {
-                    user.follow = true
+                    user.followed = true
                 }
                 return user;
             })
@@ -35,7 +35,7 @@ const usersReducer = (state = initialState, action) => {
             let stateCopy = {...state}
             stateCopy.users = stateCopy.users.map(user => {
                 if (action.userId === user.id) {
-                    user.follow = false
+                    user.followed = false
                 }
                 return user;
             })

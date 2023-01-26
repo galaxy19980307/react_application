@@ -1,0 +1,9 @@
+.new {
+    display: grid;
+    flex: 0 1 150px;
+    margin: 5px;
+
+}
+.new img {
+    width: border-box;
+}

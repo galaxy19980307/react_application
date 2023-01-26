@@ -2,15 +2,15 @@ import React from "react";
 import s from './User.module.css'
 
 const UserItem = (props) => {
-    let btnText = props.follow ? 'Unfollow' : 'Follow'
-    let btnOnClick = props.follow ? props.onUnfollow : props.onFollow
+    let btnText = props.followed ? 'Unfollow' : 'Follow'
+    let btnOnClick = props.followed ? props.onUnfollow : props.onFollow
     return (
         <div className={s.user}>
             <div className={s.avatarUser}>
-                <img src={props.img} alt='Размеры не заданы'/>
+                <img src={props.photos != null? props.photos : 'logo.jpg'}/>
             </div>
             <div>
-                {props.fullName}
+                {props.name}
             </div>
             <button onClick={() => btnOnClick(props.id)}>
                 {btnText}
