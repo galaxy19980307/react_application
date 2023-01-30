@@ -1,34 +1,33 @@
 import React from "react";
-import axios from "axios";
-import UserItem from "./UserItem";
+import UserItem from "./UserItem/UserItem";
+import s from './Users.module.css'
 
-class Users extends React.Component {
-    componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            this.props.setUsers(response.data.items)
-        })
+const Users = (props) => {
+    let pagesCount = Math.ceil(props.totalCount / props.pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
     }
-
-    onFollow = (userId) => {
-        this.props.handleFollow(userId);
-    }
-    onUnfollow = (userId) => {
-        this.props.handleUnfollow(userId);
-    }
-
-    render() {
-        return (
+    return (
+        <div>
             <div>
-                {this.props.usersPage.users
-                    .map(user => <UserItem key={user.id} id={user.id} photos={user.photos.small}
-                                           status={user.status}
-                                           name={user.name}
-                                           location={user.location} onFollow={this.onFollow}
-                                           onUnfollow={this.onUnfollow}
-                                           followed={user.followed}/>)}
+                {pages.map(p => {
+                    return <span className={props.currentPage === p && s.selectedPage} onClick={(e) => {
+                        props.onPageChanged(p)
+                    }}>{p}</span>
+                })}
             </div>
-        )
-    }
-}
+            <div>
+                {props.usersPage.users.map(user => <UserItem key={user.id} id={user.id}
+                                                                  photos={user.photos.small}
+                                                                  status={user.status}
+                                                                  name={user.name}
+                                                                  location={user.location} onFollow={props.onFollow}
+                                                                  onUnfollow={props.onUnfollow}
+                                                                  followed={user.followed}/>)}
+            </div>
+        </div>
 
+    )
+}
 export default Users;
