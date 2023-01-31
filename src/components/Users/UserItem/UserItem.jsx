@@ -3,7 +3,7 @@ import s from './User.module.css'
 
 const UserItem = (props) => {
     let btnText = props.followed ? 'Unfollow' : 'Follow'
-    let btnOnClick = props.followed ? props.onUnfollow : props.onFollow
+    let btnOnClick = props.changeFollow
     return (
         <div className={s.user}>
             <div className={s.avatarUser}>

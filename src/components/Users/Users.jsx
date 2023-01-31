@@ -19,12 +19,11 @@ const Users = (props) => {
             </div>
             <div>
                 {props.usersPage.users.map(user => <UserItem key={user.id} id={user.id}
-                                                                  photos={user.photos.small}
-                                                                  status={user.status}
-                                                                  name={user.name}
-                                                                  location={user.location} onFollow={props.onFollow}
-                                                                  onUnfollow={props.onUnfollow}
-                                                                  followed={user.followed}/>)}
+                                                             photos={user.photos.small}
+                                                             status={user.status}
+                                                             name={user.name}
+                                                             location={user.location} changeFollow={props.changeFollow}
+                                                             followed={user.followed}/>)}
             </div>
         </div>
 

@@ -1,98 +1,50 @@
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
+const CHANGE_FOLLOW = 'CHANGE_FOLLOW'
+const SET_USERS = 'SET_USERS'
 const SET_PAGE_USERS = 'SET_PAGE_USERS'
 const SAVE_USERS_TOTAL_COUNT = 'SAVE_USERS_TOTAL_COUNT'
-const IS_LOADING= 'IS_LOADING'
-/*const CHANGE_FOLLOW = "CHANGE_FOLLOW";*/
+const IS_LOADING = 'IS_LOADING'
 
 let initialState = {
     users: [],
     pageSize: 10,
     totalCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: false
 }
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         // кейс с изменением фоллоу (с булевым значением )
-        // case CHANGE_FOLLOW: {
-        //     let stateCopy = {...state}
-        //     stateCopy.users = state.users.map(user => {
-        //         if (action.userId === user.id) {
-        //             user.follow = !user.follow
-        //         }
-        //         return user;
-        //     })
-        //     return stateCopy;
-        // }
-        case FOLLOW: {
+        case CHANGE_FOLLOW: {
             let stateCopy = {...state}
-            stateCopy.users = stateCopy.users.map(user => {
+            stateCopy.users = state.users.map(user => {
                 if (action.userId === user.id) {
-                    user.followed = true
-                }
-                return user;
-            })
-
-            return stateCopy;
-        }
-
-        case UNFOLLOW: {
-            let stateCopy = {...state}
-            stateCopy.users = stateCopy.users.map(user => {
-                if (action.userId === user.id) {
-                    user.followed = false
+                    user.followed = !user.followed
                 }
                 return user;
             })
             return stateCopy;
         }
+
         case SET_USERS: {
             return {...state, users: action.users}
         }
         case SET_PAGE_USERS: {
-            return {...state,  currentPage:action.currentPage}
+            return {...state, currentPage: action.currentPage}
         }
         case SAVE_USERS_TOTAL_COUNT: {
-            return {...state, totalCount:action.totalCount}
+            return {...state, totalCount: action.totalCount}
         }
         case IS_LOADING: {
-            return {...state, isFetching:action.isFetching}
+            return {...state, isFetching: action.isFetching}
         }
-         // другие варианты с мапом и иф
-        // let stateCopy = {
-        //     ...state,
-        //     users: state.users.map(user => {
-        //             if (action.userId === user.id) {
-        //                 user.follow = true
-        //             }
-        //             return user;
-        //         }
-        //     )
-        // }
-        // return stateCopy
-        // ##########################
-        // return {
-        //     ...state,
-        //     users: state.users.map(user => {
-        //             if (action.userId === user.id) {
-        //                 user.follow = true
-        //             }
-        //             return user;
-        //         }
-        //     )
-        // }
         default:
             return state;
     }
 }
 
-export const followAC = (userId) => ({type: FOLLOW, userId});
-export const unfollowAC = (userId) => ({type: UNFOLLOW, userId});
-/*export const changeFollowAC = (userId) => ({type: CHANGE_FOLLOW, userId});*/
-export const setUsersAC = (users) => ({type: SET_USERS, users});
-export const setPageUsersAC = (currentPage) => ({type: SET_PAGE_USERS, currentPage})
-export const saveUsersTotalCountAC = (totalCount) => ({type: SAVE_USERS_TOTAL_COUNT, totalCount})
-export const isLoadingAC = (isFetching) => ({type: IS_LOADING, isFetching})
+export const changeFollow = (userId) => ({type: CHANGE_FOLLOW, userId});
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const setPageUsers = (currentPage) => ({type: SET_PAGE_USERS, currentPage})
+export const saveUsersTotalCount = (totalCount) => ({type: SAVE_USERS_TOTAL_COUNT, totalCount})
+export const isLoading = (isFetching) => ({type: IS_LOADING, isFetching})
 export default usersReducer;
