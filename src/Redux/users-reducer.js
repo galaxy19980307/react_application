@@ -3,13 +3,15 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_PAGE_USERS = 'SET_PAGE_USERS'
 const SAVE_USERS_TOTAL_COUNT = 'SAVE_USERS_TOTAL_COUNT'
+const IS_LOADING= 'IS_LOADING'
 /*const CHANGE_FOLLOW = "CHANGE_FOLLOW";*/
 
 let initialState = {
     users: [],
     pageSize: 10,
     totalCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true
 }
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -55,6 +57,9 @@ const usersReducer = (state = initialState, action) => {
         case SAVE_USERS_TOTAL_COUNT: {
             return {...state, totalCount:action.totalCount}
         }
+        case IS_LOADING: {
+            return {...state, isFetching:action.isFetching}
+        }
          // другие варианты с мапом и иф
         // let stateCopy = {
         //     ...state,
@@ -89,4 +94,5 @@ export const unfollowAC = (userId) => ({type: UNFOLLOW, userId});
 export const setUsersAC = (users) => ({type: SET_USERS, users});
 export const setPageUsersAC = (currentPage) => ({type: SET_PAGE_USERS, currentPage})
 export const saveUsersTotalCountAC = (totalCount) => ({type: SAVE_USERS_TOTAL_COUNT, totalCount})
+export const isLoadingAC = (isFetching) => ({type: IS_LOADING, isFetching})
 export default usersReducer;
