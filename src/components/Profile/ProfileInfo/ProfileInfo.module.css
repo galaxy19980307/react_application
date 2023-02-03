@@ -4,3 +4,9 @@
 .profileInfo img {
     height: 240px;
 }
+.avatarDescription img {
+    width: initial;
+}
+.fullName {
+    font-weight: bold;
+}

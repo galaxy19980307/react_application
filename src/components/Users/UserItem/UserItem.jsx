@@ -1,5 +1,6 @@
 import React from "react";
 import s from './User.module.css'
+import {NavLink} from "react-router-dom";
 
 const UserItem = (props) => {
     let btnText = props.followed ? 'Unfollow' : 'Follow'
@@ -7,7 +8,9 @@ const UserItem = (props) => {
     return (
         <div className={s.user}>
             <div className={s.avatarUser}>
+                <NavLink to={`/profile/${props.id}`} >
                 <img src={props.photos != null? props.photos : 'logo.jpg'}/>
+                </NavLink>
             </div>
             <div>
                 {props.name}

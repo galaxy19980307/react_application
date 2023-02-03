@@ -10,9 +10,9 @@ class UsersAPI extends React.Component {
         this.props.isLoading(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
-                this.props.isLoading(false)
                 this.props.setUsers(response.data.items);
                 this.props.saveUsersTotalCount(response.data.totalCount);
+                this.props.isLoading(false)
             })
     }
 
@@ -21,8 +21,8 @@ class UsersAPI extends React.Component {
         this.props.setPageUsers(p)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
             .then(response => {
-                this.props.isLoading(false)
                 this.props.setUsers(response.data.items);
+                this.props.isLoading(false)
             })
 
     }
@@ -32,9 +32,7 @@ class UsersAPI extends React.Component {
 
         return <>
             {this.props.isFetching ? <Preloader/> : null}
-            <Users totalCount={this.props.totalCount} pageSize={this.props.pageSize}
-                   currentPage={this.props.currentPage}
-                   onPageChanged={this.onPageChanged} usersPage={this.props.usersPage} changeFollow={this.props.changeFollow} />
+            <Users {...this.props} onPageChanged={this.onPageChanged}/>
         </>
     }
 }

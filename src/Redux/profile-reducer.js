@@ -1,13 +1,37 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
+let initialStateContact = {
+    facebook: null,
+    website: null,
+    vk: null,
+    twitter: null,
+    instagram: null,
+    youtube: null,
+    github: null,
+    mainLink: null
+}
+let initialStatePhoto = {
+    small: null,
+    large: null,
+}
 let initialState = {
     postsData: [
         {id: 1, message: 'Hi everybody!', likeQuantity: 6, img: 'https://img.freepik.com/free-photo/landscape-of-morning-fog-and-mountains-with-hot-air-balloons-at-sunrise_335224-794.jpg?w=2000'},
         {id: 2, message: 'Are you here?', likeQuantity: 3, img: 'https://img.freepik.com/free-photo/wide-angle-shot-of-a-single-tree-growing-under-a-clouded-sky-during-a-sunset-surrounded-by-grass_181624-22807.jpg?w=2000'},
         {id: 3, message: 'Nobody love me!', likeQuantity: 0, img: 'https://i.pinimg.com/originals/be/39/7c/be397c91b8026b17f5f8a6ed98e23e9e.jpg'}
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: {
+        aboutMe: null,
+        contacts: initialStateContact,
+        lookingForAJob: null,
+        lookingForAJobDescription: null,
+        fullName: null,
+        userId: null,
+        photos: initialStatePhoto
+    }
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -31,6 +55,12 @@ const profileReducer = (state = initialState, action) => {
                 newPostText: action.newText
             }
         }
+        case SET_USER_PROFILE: {
+            return {
+                ...state,
+                profile: action.profile
+            }
+        }
         default:
             return state;
     }
@@ -38,4 +68,5 @@ const profileReducer = (state = initialState, action) => {
 
 export const addPostActionCreator = () => ({type: ADD_POST});
 export const updateNewPostTextActionCreator = (newText) => ({type: UPDATE_NEW_POST_TEXT, newText});
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export default profileReducer;
