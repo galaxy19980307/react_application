@@ -1,7 +1,7 @@
 import React from "react";
 import s from './User.module.css'
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import {usersAPI} from "../../../DAL/usersAPI";
 
 const UserItem = (props) => {
     let btnText = props.followed ? 'Unfollow' : 'Follow'
@@ -18,21 +18,15 @@ const UserItem = (props) => {
             </div>
             <button onClick={() => {
                 props.followed ?
-                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`,
-                        {
-                            withCredentials: true
-                        })
-                        .then(response => {
-                            if (response.data?.resultCode === 0) {
+                    usersAPI.followUser(props.id)
+                        .then(data => {
+                            if (data?.resultCode === 0) {
                                 props.changeFollow(props.id)
                             }
                         })
-                    : axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {},
-                        {
-                            withCredentials: true
-                        })
-                        .then(response => {
-                            if (response.data?.resultCode === 0) {
+                    : usersAPI.unfollowUser(props.id)
+                        .then(data => {
+                            if (data?.resultCode === 0) {
                                 props.changeFollow(props.id)
                             }
                         })
