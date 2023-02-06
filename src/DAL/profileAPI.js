@@ -1,4 +1,4 @@
-import {instance} from "./Instance";
+import {instance} from "./instance";
 
 export const profileAPI = {
     getUserProfile(userId = 1) {

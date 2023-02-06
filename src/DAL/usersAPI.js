@@ -1,4 +1,4 @@
-import {instance} from "./Instance";
+import {instance} from "./instance";
 
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {

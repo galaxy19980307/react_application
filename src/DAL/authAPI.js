@@ -1,4 +1,4 @@
-import {instance} from "./Instance";
+import {instance} from "./instance";
 
 export const authAPI = {
     checkUserAuth() {
