@@ -8,7 +8,10 @@ import Preloader from "../Preloader/Preloader";
 class UsersAPI extends React.Component {
     componentDidMount() {
         this.props.isLoading(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+            {
+                withCredentials: true
+            })
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.saveUsersTotalCount(response.data.totalCount);
@@ -19,7 +22,10 @@ class UsersAPI extends React.Component {
     onPageChanged = (p) => {
         this.props.isLoading(true)
         this.props.setPageUsers(p)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`,
+            {
+                withCredentials: true
+            })
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.isLoading(false)

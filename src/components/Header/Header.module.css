@@ -12,3 +12,7 @@
     height: 100px;
     background-color: darkorange;
 }
+.login {
+    font-weight: revert;
+    font-family: "Cambria Math";
+}

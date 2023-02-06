@@ -3,10 +3,6 @@
     display: grid;
     width: 1600px;
     background-color: gold;
-
-
-
-
     grid-template-areas:
     "h h"
     "n a";
