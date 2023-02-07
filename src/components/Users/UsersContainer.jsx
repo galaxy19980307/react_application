@@ -1,6 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
-import {changeFollow, isLoading, saveUsersTotalCount, setPageUsers, setUsers} from "../../Redux/users-reducer";
+import {
+    changeFollow,
+    isLoading,
+    saveUsersTotalCount,
+    setFollowingProgress,
+    setPageUsers,
+    setUsers
+} from "../../Redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 import {usersAPI} from "../../DAL/usersAPI";
@@ -40,10 +47,11 @@ let mapStateToProps = (state) => {
         totalCount: state.usersPage.totalCount,
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
 export default connect(mapStateToProps, {
-    changeFollow, setUsers, setPageUsers, saveUsersTotalCount, isLoading
+    changeFollow, setUsers, setPageUsers, saveUsersTotalCount, isLoading,setFollowingProgress
 })(UsersAPI);

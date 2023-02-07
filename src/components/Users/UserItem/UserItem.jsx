@@ -5,7 +5,6 @@ import {usersAPI} from "../../../DAL/usersAPI";
 
 const UserItem = (props) => {
     let btnText = props.followed ? 'Unfollow' : 'Follow'
-
     return (
         <div className={s.user}>
             <div className={s.avatarUser}>
@@ -16,22 +15,25 @@ const UserItem = (props) => {
             <div>
                 {props.name}
             </div>
-            <button onClick={() => {
+            <button disabled={props.followingInProgress.some(id=> id=== props.id)} onClick={() => {
+                props.setFollowingProgress(true, props.id)
                 props.followed ?
                     usersAPI.followUser(props.id)
                         .then(data => {
                             if (data?.resultCode === 0) {
+                                props.setFollowingProgress(false,props.id)
                                 props.changeFollow(props.id)
                             }
                         })
                     : usersAPI.unfollowUser(props.id)
                         .then(data => {
                             if (data?.resultCode === 0) {
+                                props.setFollowingProgress(false, props.id)
                                 props.changeFollow(props.id)
                             }
                         })
             }
-            }> {btnText}
+            } > {btnText}
             </button>
             <div>
                 {props.status}

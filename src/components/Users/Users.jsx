@@ -18,7 +18,9 @@ const Users = (props) => {
                 })}
             </div>
             <div>
-                {props.usersPage.users.map(user => <UserItem key={user.id} id={user.id}
+                {props.usersPage.users.map(user => <UserItem followingInProgress={props.followingInProgress}
+                                                             setFollowingProgress={props.setFollowingProgress}
+                                                             key={user.id} id={user.id}
                                                              photos={user.photos.small}
                                                              status={user.status}
                                                              name={user.name}
