@@ -25,7 +25,7 @@ const Users = (props) => {
                                                              status={user.status}
                                                              name={user.name}
                                                              location={user.location} changeFollow={props.changeFollow}
-                                                             followed={user.followed}/>)}
+                                                             followed={user.followed} changeFollowThunkCreator={props.changeFollowThunkCreator}/>)}
             </div>
         </div>
 

@@ -1,3 +1,5 @@
+import {usersAPI} from "../DAL/usersAPI";
+
 const CHANGE_FOLLOW = 'CHANGE_FOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_PAGE_USERS = 'SET_PAGE_USERS'
@@ -62,4 +64,51 @@ export const setFollowingProgress = (followingInProgress, userId) => ({
     followingInProgress,
     userId
 })
+
 export default usersReducer;
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(isLoading(true))
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(setUsers(data.items));
+                dispatch(saveUsersTotalCount(data.totalCount));
+                dispatch(isLoading(false))
+            })
+    }
+}
+export const setCurrentPageThunkCreator = (p, pageSize) => {
+    return (dispatch) => {
+        dispatch(isLoading(true))
+        dispatch(setPageUsers(p))
+        usersAPI.getUsers(p, pageSize)
+            .then(data => {
+                dispatch(setUsers(data.items));
+                dispatch(isLoading(false))
+            })
+    }
+}
+
+export const changeFollowThunkCreator = (followed, id) => {
+    return (dispatch) => {
+        dispatch(setFollowingProgress(true, id))
+        if (followed) {
+            usersAPI.followUser(id)
+                .then(data => {
+                    if (data?.resultCode === 0) {
+                        dispatch(setFollowingProgress(false, id))
+                        dispatch(changeFollow(id))
+                    }
+                })
+        } else {
+            usersAPI.unfollowUser(id)
+                .then(data => {
+                    if (data?.resultCode === 0) {
+                        dispatch(setFollowingProgress(false, id))
+                        dispatch(changeFollow(id))
+                    }
+                })
+        }
+    }
+}

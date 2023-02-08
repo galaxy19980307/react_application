@@ -1,42 +1,27 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    changeFollow,
-    isLoading,
-    saveUsersTotalCount,
-    setFollowingProgress,
-    setPageUsers,
-    setUsers
+    changeFollow, changeFollowThunkCreator,
+    getUsersThunkCreator,
+    setCurrentPageThunkCreator,
+    setFollowingProgress
 } from "../../Redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
-import {usersAPI} from "../../DAL/usersAPI";
 
 class UsersAPI extends React.Component {
     componentDidMount() {
-        this.props.isLoading(true)
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.setUsers(data.items);
-                this.props.saveUsersTotalCount(data.totalCount);
-                this.props.isLoading(false)
-            })
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
-
     onPageChanged = (p) => {
-        this.props.isLoading(true)
-        this.props.setPageUsers(p)
-        usersAPI.getUsers(p, this.props.pageSize)
-            .then(data => {
-                this.props.setUsers(data.items);
-                this.props.isLoading(false)
-            })
+        this.props.setCurrentPageThunkCreator(p, this.props.pageSize)
     }
-
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
-            <Users {...this.props} onPageChanged={this.onPageChanged}/>
+            <Users {...this.props} onPageChanged={this.onPageChanged}
+                   changeFollowThunkCreator={this.props.changeFollowThunkCreator}
+                   setFollowingProgress={this.props.setFollowingProgress}/>
         </>
     }
 }
@@ -53,5 +38,9 @@ let mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-    changeFollow, setUsers, setPageUsers, saveUsersTotalCount, isLoading,setFollowingProgress
+    changeFollow,
+    setFollowingProgress,
+    getUsersThunkCreator,
+    setCurrentPageThunkCreator,
+    changeFollowThunkCreator
 })(UsersAPI);
