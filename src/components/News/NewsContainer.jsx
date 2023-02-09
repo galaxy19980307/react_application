@@ -5,7 +5,8 @@ import {addNewsAC, updateNewNewsTextAC} from "../../Redux/news-reducer";
 
 const mapStateToProps = (state) => {
     return {
-        newsPage: state.newsPage
+        newsPage: state.newsPage,
+        isAuth: state.auth.isAuth
     }
 };
 

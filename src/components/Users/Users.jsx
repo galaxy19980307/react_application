@@ -1,12 +1,16 @@
 import React from "react";
 import UserItem from "./UserItem/UserItem";
 import s from './Users.module.css'
+import {Navigate} from "react-router-dom";
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalCount / props.pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
+    }
+    if (!props.isAuth) {
+        return <Navigate to={"/login"}/>;
     }
     return (
         <div>
@@ -19,13 +23,13 @@ const Users = (props) => {
             </div>
             <div>
                 {props.usersPage.users.map(user => <UserItem followingInProgress={props.followingInProgress}
-                                                             setFollowingProgress={props.setFollowingProgress}
                                                              key={user.id} id={user.id}
                                                              photos={user.photos.small}
                                                              status={user.status}
                                                              name={user.name}
-                                                             location={user.location} changeFollow={props.changeFollow}
-                                                             followed={user.followed} changeFollowThunkCreator={props.changeFollowThunkCreator}/>)}
+                                                             location={user.location}
+                                                             followed={user.followed}
+                                                             changeFollowThunkCreator={props.changeFollowThunkCreator}/>)}
             </div>
         </div>
 

@@ -1,3 +1,5 @@
+import {authAPI} from "../DAL/authAPI";
+
 const SET_AUTH_USER = 'SET_AUTH_USER'
 
 
@@ -24,3 +26,15 @@ const authReducer = (state = initialState, action) => {
 export const setUserAuth = (id,login,email) => ({type: SET_AUTH_USER, data: {id,login,email}});
 
 export default authReducer;
+
+export const checkAuthThunkCreator= () => {
+    return (dispatch) => {
+        authAPI.checkUserAuth()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    let {id, login, email} = data.data
+                    dispatch(setUserAuth(id, login, email));
+                }
+            })
+    }
+}

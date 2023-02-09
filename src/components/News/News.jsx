@@ -1,10 +1,12 @@
 import React from "react";
 import s from './News.module.css'
 import New from "./New/New";
+import {Navigate} from "react-router-dom";
 
 const News = (props) => {
 
-    let newsElements = props.newsPage.newsData.map(n => <New key={n.id} by={n.by} name={n.name} publishTime={n.publishTime} img={n.img}/>)
+    let newsElements = props.newsPage.newsData.map(n => <New key={n.id} by={n.by} name={n.name}
+                                                             publishTime={n.publishTime} img={n.img}/>)
 
     let newNewsElement = React.createRef();
 
@@ -14,8 +16,11 @@ const News = (props) => {
     const onChangeNew = () => {
         let newText = newNewsElement.current.value;  // получает значение(текст) из текстэрии
         props.handleUpdateNewNewsText(newText);
-
     }
+    if (!props.isAuth) {
+        return <Navigate to={'/login'}/>
+    }
+
     return (
         <div>
             <h3>NEWS</h3>
