@@ -22,10 +22,6 @@ const Dialogs = (props) => {
         let newMessage = newMessageElement.current.value;  // получает значение(текст) из текстэрии
         props.handleChangeMessage(newMessage);
     }
-    if (!props.isAuth) {
-        return <Navigate to={'/login'}/>
-    }
-
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

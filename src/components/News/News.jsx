@@ -2,6 +2,7 @@ import React from "react";
 import s from './News.module.css'
 import New from "./New/New";
 import {Navigate} from "react-router-dom";
+import {withAuthRedirect} from "../../Hoc/withAuthRedirect";
 
 const News = (props) => {
 
@@ -17,9 +18,7 @@ const News = (props) => {
         let newText = newNewsElement.current.value;  // получает значение(текст) из текстэрии
         props.handleUpdateNewNewsText(newText);
     }
-    if (!props.isAuth) {
-        return <Navigate to={'/login'}/>
-    }
+
 
     return (
         <div>
@@ -37,5 +36,7 @@ const News = (props) => {
             </div>
         </div>
     )
+
 }
+
 export default News;

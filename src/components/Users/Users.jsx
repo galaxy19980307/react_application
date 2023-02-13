@@ -1,7 +1,6 @@
 import React from "react";
 import UserItem from "./UserItem/UserItem";
 import s from './Users.module.css'
-import {Navigate} from "react-router-dom";
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalCount / props.pageSize);
@@ -9,14 +8,11 @@ const Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
-    if (!props.isAuth) {
-        return <Navigate to={"/login"}/>;
-    }
     return (
         <div>
             <div>
                 {pages.map(p => {
-                    return <span className={props.currentPage === p && s.selectedPage} onClick={(e) => {
+                    return <span className={props.currentPage === p && s.selectedPage} onClick={() => {
                         props.onPageChanged(p)
                     }}>{p}</span>
                 })}
