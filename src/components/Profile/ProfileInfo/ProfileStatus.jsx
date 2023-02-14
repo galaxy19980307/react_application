@@ -1,17 +1,18 @@
 import React from "react";
+import s from "./ProfileInfo.module.css"
 
 class ProfileStatus extends React.Component {
     state = {
         statusEdit: false
     }
 
-    handleDoubleClick() {
+    handleDoubleClick = () => {
         this.setState({
             statusEdit: true
         })
     }
 
-    handleBlur() {
+    handleBlur = () => {
         this.setState({
             statusEdit: false
         })
@@ -22,11 +23,11 @@ class ProfileStatus extends React.Component {
             <div>
                 {!this.state.statusEdit &&
                     <div>
-                        <span onDoubleClick={this.handleDoubleClick.bind(this)}>{this.props.status}</span>
+                        <button  className={s.button} onDoubleClick={this.handleDoubleClick}>{this.props.status}</button>
                     </div>}
                 {this.state.statusEdit &&
                     <div>
-                        <input autoFocus={true} onBlur={this.handleBlur.bind(this)} value={this.props.status}/>
+                        <input  className={s.button} autoFocus={true} onBlur={this.handleBlur} value={this.props.status}/>
                     </div>}
             </div>
         )

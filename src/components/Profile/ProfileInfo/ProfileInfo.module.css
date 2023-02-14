@@ -1,12 +1,23 @@
 .avatarDescription {
-    padding: 10px;
+    padding: .7em 1.5em;
 }
-.profileInfo img {
-    height: 240px;
-}
+
 .avatarDescription img {
-    width: initial;
+    width: inherit;
+}
+.myAvatarDescription img {
+    width: inherit;
 }
 .fullName {
     font-weight: bold;
+    padding: .7em 1.5em;
+    font-family: "Arial Black";
 }
+.button {
+    color: #fff; /* цвет текста */
+    text-decoration: none; /* убирать подчёркивание у ссылок */
+    user-select: none; /* убирать выделение текста */
+    background: coral; /* фон кнопки */
+    padding: .7em 1.5em; /* отступ от текста */ /* убирать контур в Mozilla */
+}
+
