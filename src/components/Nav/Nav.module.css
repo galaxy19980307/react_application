@@ -1,12 +1,12 @@
 .nav {
     display: grid;
+    justify-content: space-between;
     grid-area: n;
     list-style-type: georgian;
     margin: unset;
     padding: 0;
     width: 180px;
     background-color: darkorange;
-    position: relative;
     display: table-cell;
 }
 
@@ -19,7 +19,7 @@
 }
 .item a:hover {
     background-color: peru;
-    color: white;
+    color: gold;
 }
 
 .item a.activeLink {

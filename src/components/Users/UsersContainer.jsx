@@ -4,8 +4,9 @@ import {changeFollowThunkCreator, getUsersThunkCreator, setCurrentPageThunkCreat
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 import {withAuthRedirect} from "../../Hoc/withAuthRedirect";
+import {compose} from "redux";
 
-class UsersAPI extends React.Component {
+class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
@@ -33,10 +34,9 @@ let mapStateToProps = (state) => {
         followingInProgress: state.usersPage.followingInProgress,
     }
 }
-
-let AuthRedirectComponent = withAuthRedirect(UsersAPI)
-export default connect(mapStateToProps, {
-    getUsersThunkCreator,
-    setCurrentPageThunkCreator,
-    changeFollowThunkCreator
-})(AuthRedirectComponent);
+export default compose(connect(mapStateToProps, {
+        getUsersThunkCreator,
+        setCurrentPageThunkCreator,
+        changeFollowThunkCreator
+    }),
+    withAuthRedirect)(UsersContainer)

@@ -18,8 +18,6 @@ const News = (props) => {
         let newText = newNewsElement.current.value;  // получает значение(текст) из текстэрии
         props.handleUpdateNewNewsText(newText);
     }
-
-
     return (
         <div>
             <h3>NEWS</h3>

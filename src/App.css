@@ -1,12 +1,11 @@
 .app-wrapper {
     margin: auto;
     display: grid;
-    width: 1600px;
     background-color: gold;
     grid-template-areas:
     "h h"
     "n a";
-    grid-template-rows: 2fr 15fr;
+    grid-template-rows: 1fr 13fr;
     grid-template-columns: 2fr 24fr;
     /*grid-gap: 2vw;*/
 }
@@ -14,6 +13,7 @@
 .app-wrapper-content {
     grid-area: a;
     background-color: gold;
+
 }
 
 

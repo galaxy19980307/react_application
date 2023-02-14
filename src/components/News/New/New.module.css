@@ -1,7 +1,8 @@
 .new {
     display: grid;
     flex: 0 1 150px;
-    margin: 5px;
+    margin: 10px;
+    border-style: ridge;
 
 }
 .new img {

@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import News from "./News";
 import {addNewsAC, updateNewNewsTextAC} from "../../Redux/news-reducer";
 import {withAuthRedirect} from "../../Hoc/withAuthRedirect";
+import {compose} from "redux";
 
 const mapStateToProps = (state) => {
     return {
@@ -21,8 +22,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 
 }
-
-let AuthRedirectComponent = withAuthRedirect(News)
-
-const NewsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
-export default NewsContainer;
+export default compose(connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(News)
