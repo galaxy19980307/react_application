@@ -91,7 +91,7 @@ export default profileReducer;
 export const getUsersThunkCreator = (userId) => {
     return (dispatch) => {
         if (!userId) {
-            userId = 2;
+            userId = 27614;
         }
         profileAPI.getUserProfile(userId)
             .then(data => {
