@@ -6,13 +6,13 @@ const ProfileInfo = (props) => {
     return (
         <div>
             <div className={s.avatarDescription}>
-                <img src={props.profile.photos.large} />
+                <img src={props.profile.photos.large}/>
             </div>
             <div className={s.fullName}>
-                 {props.profile.fullName}
+                {props.profile.fullName}
             </div>
             <div>
-                <ProfileStatus status={"Hello, my friend!"}/>
+                <ProfileStatus status={props.status} updateUserStatusThunkCreator={props.updateUserStatusThunkCreator}/>
             </div>
             <div>
                 {props.profile.contacts.vk}

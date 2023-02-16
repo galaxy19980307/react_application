@@ -3,7 +3,8 @@ import s from "./ProfileInfo.module.css"
 
 class ProfileStatus extends React.Component {
     state = {
-        statusEdit: false
+        statusEdit: false,
+        status: this.props.status
     }
 
     handleDoubleClick = () => {
@@ -16,6 +17,20 @@ class ProfileStatus extends React.Component {
         this.setState({
             statusEdit: false
         })
+        this.props.updateUserStatusThunkCreator(this.state.status)
+    }
+    onStatusChanged = (e) => {
+        this.setState({
+            status: e.currentTarget.value
+        })
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
     render() {
@@ -23,11 +38,12 @@ class ProfileStatus extends React.Component {
             <div>
                 {!this.state.statusEdit &&
                     <div>
-                        <button  className={s.button} onDoubleClick={this.handleDoubleClick}>{this.props.status}</button>
+                        <button onDoubleClick={this.handleDoubleClick}>{this.props.status || "Hello"} </button>
                     </div>}
                 {this.state.statusEdit &&
                     <div>
-                        <input  className={s.button} autoFocus={true} onBlur={this.handleBlur} value={this.props.status}/>
+                        <input onChange={this.onStatusChanged} className={s.button} autoFocus={true}
+                               onBlur={this.handleBlur} value={this.state.status}/>
                     </div>}
             </div>
         )

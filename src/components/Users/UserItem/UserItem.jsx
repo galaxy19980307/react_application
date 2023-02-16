@@ -19,9 +19,6 @@ const UserItem = (props) => {
             }> {btnText}
             </button>
             <div>
-                {props.status}
-            </div>
-            <div>
                 {props.location?.country}
             </div>
             <div>
