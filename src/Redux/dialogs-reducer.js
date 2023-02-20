@@ -1,5 +1,4 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let initialState = {
     dialogsData: [
@@ -14,8 +13,7 @@ let initialState = {
         {id: 2, message: 'Hello, i love you too!'},
         {id: 3, message: 'Hello, baby!'},
         {id: 4, message: 'Hello!'}
-    ],
-    newMessageText: ''
+    ]
 }
 
 const dialogsReducer = (state = initialState, action) => {
@@ -23,24 +21,13 @@ const dialogsReducer = (state = initialState, action) => {
         case ADD_MESSAGE: {
             // функция добавляет новое сообщение (объект) в список (массив) с сообщениями (объектами) и обнуляет newMessageText
             let newMessage = {
-                id: state.messagesData.length +1,
-                message: state.newMessageText,
+                id: state.messagesData.length + 1,
+                message: action.newMessageBody,
             };
             return { // возвращается копия стейта
                 ...state,
                 messagesData: [...state.messagesData, newMessage],
-                newMessageText: ''
             };
-        }
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            // функция сохраняет в стэйт новое введенное значение, которое ввели в текстэрии
-            let stateCopy = {...state}
-            stateCopy.newMessageText = action.newMessage;
-            return stateCopy;
-            // return { // возвращается копия стейта
-            //     ...state,
-            //     newMessageText: action.newMessage
-            // };
         }
         default:
             return state;
@@ -48,5 +35,4 @@ const dialogsReducer = (state = initialState, action) => {
 }
 export default dialogsReducer;
 
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
-export const updateNewMessageTextActionCreator = (newMessage) => ({type: UPDATE_NEW_MESSAGE_TEXT, newMessage});
+export const addMessageActionCreator = (newMessageBody) => ({type: ADD_MESSAGE, newMessageBody});

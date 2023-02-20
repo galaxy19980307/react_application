@@ -2,7 +2,7 @@ import React from "react";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
-import {Navigate} from "react-router-dom";
+import {Field, reduxForm} from "redux-form";
 
 const Dialogs = (props) => {
     let dialogsElements = props.dialogsPage.dialogsData
@@ -11,16 +11,20 @@ const Dialogs = (props) => {
     let messagesElements = props.dialogsPage.messagesData
         .map(message => <MessageItem message={message.message} id={message.id} key={message.id}/>);
 
-    let newMessageElement = React.createRef();
 
-
-    const onAddMessage = () => {
-        props.handleAddMessage();
+    const MessageForm = (props) => {
+        return (
+            <form onSubmit={props.handleSubmit}>
+                <div>
+                    <Field placeholder={'Enter your message'} name={"newMessageBody"} component={"textarea"}/>
+                </div>
+                <button>Send</button>
+            </form>
+        )
     }
-
-    const onChangeMessage = () => {
-        let newMessage = newMessageElement.current.value;  // получает значение(текст) из текстэрии
-        props.handleChangeMessage(newMessage);
+    const MessageReduxForm = reduxForm({form: 'DialogAddMessage'})(MessageForm)
+    const onAddMessage = (values) => {
+        props.handleAddMessage(values.newMessageBody);
     }
     return (
         <div className={s.dialogs}>
@@ -31,13 +35,7 @@ const Dialogs = (props) => {
                 <div className={s.messagesItems}>
                     {messagesElements}
                 </div>
-                <div> <textarea placeholder={'Enter new message'} onChange={onChangeMessage} ref={newMessageElement}
-                                value={props.dialogsPage.newMessageText}/>
-                </div>
-                <div>
-                    <button onClick={onAddMessage}>
-                        Add message
-                    </button>
+                <div><MessageReduxForm onSubmit={onAddMessage}/>
                 </div>
             </div>
         </div>

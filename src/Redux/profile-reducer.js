@@ -1,7 +1,6 @@
 import {profileAPI} from "../DAL/profileAPI";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 
@@ -40,7 +39,6 @@ let initialState = {
             img: 'https://i.pinimg.com/originals/be/39/7c/be397c91b8026b17f5f8a6ed98e23e9e.jpg'
         }
     ],
-    newPostText: '',
     profile: {
         aboutMe: null,
         contacts: initialStateContact,
@@ -59,7 +57,7 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST: {
             let newPost = {
                 id: 4,
-                message: state.newPostText,
+                message: action.newPostText,
                 likeQuantity: 0,
                 img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_IB-d9hvImTfdTGctBqEXjIOMhSvSSsBIi1Z5JLyU-h2SLkqb2Kp0SuyCXDhUqMC8J-I&usqp=CAU',
             }
@@ -67,12 +65,6 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 postsData: [...state.postsData, newPost],
                 newPostText: ''
-            }
-        }
-        case UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText
             }
         }
         case SET_USER_PROFILE: {
@@ -92,8 +84,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const updateNewPostTextActionCreator = (newText) => ({type: UPDATE_NEW_POST_TEXT, newText});
+export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status})
 export default profileReducer;
