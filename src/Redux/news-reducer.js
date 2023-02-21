@@ -1,5 +1,4 @@
 const ADD_NEWS = 'ADD_NEWS';
-const UPDATE_NEW_NEWS_TEXT = 'UPDATE_NEW_NEWS_TEXT';
 
 let initialState = {
     newsData: [
@@ -16,18 +15,12 @@ const newsReducer = (state = initialState, action) => {
             let newNews = {
                 id: state.newsData.length + 1,
                 by: 'Me',
-                name: state.newNewsText,
+                name: action.newNewText,
             };
             return {
                 ...state,
                 newsData: [...state.newsData, newNews],
-                newNewsText: ''
             }
-        }
-        case UPDATE_NEW_NEWS_TEXT: {
-            let stateCopy = {...state}
-            stateCopy.newNewsText= action.newNews;
-            return stateCopy;
         }
         default:
             return state;
@@ -35,5 +28,4 @@ const newsReducer = (state = initialState, action) => {
 }
 export default newsReducer;
 
-export const addNewsAC = () => ({type: ADD_NEWS});
-export const updateNewNewsTextAC = (newNews) => ({type: UPDATE_NEW_NEWS_TEXT, newNews});
+export const addNewsAC = (newNewText) => ({type: ADD_NEWS, newNewText});

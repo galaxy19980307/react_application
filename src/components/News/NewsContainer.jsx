@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import News from "./News";
-import {addNewsAC, updateNewNewsTextAC} from "../../Redux/news-reducer";
+import {addNewsAC} from "../../Redux/news-reducer";
 import {withAuthRedirect} from "../../Hoc/withAuthRedirect";
 import {compose} from "redux";
 
@@ -13,12 +13,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleAddNews: () => {
-            dispatch(addNewsAC());
+        handleAddNews: (newNewText) => {
+            dispatch(addNewsAC(newNewText));
         },
-        handleUpdateNewNewsText: (newNews) => {
-            dispatch(updateNewNewsTextAC(newNews));
-        }
     }
 
 }
