@@ -2,9 +2,8 @@ import React from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
-import {maxLength15, required} from "../../Utils/ValidationField";
-import {input, textarea} from "../../Utils/FormControl/FormControl";
-import login from "../../Login/Login";
+import {maxLength30, required} from "../../Utils/ValidationField";
+import {textarea} from "../../Utils/FormControl/FormControl";
 
 const MyPosts = (props) => {
 
@@ -16,14 +15,14 @@ const MyPosts = (props) => {
         return (
             <form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field label={'Enter your post'} name={"newPostText"} validate={[required, maxLength15]}
+                    <Field label={'Enter your post'} name={"newPostText"} validate={[required, maxLength30]}
                            component={textarea}/>
                 </div>
                 <button>Add Post</button>
             </form>
         )
     }
-    const PostReduxForm = reduxForm({form:'AddPost'})(PostForm)
+    const PostReduxForm = reduxForm({form: 'AddPost'})(PostForm)
     const onAddPost = (values) => {
         props.handleAddPost(values.newPostText);
     }

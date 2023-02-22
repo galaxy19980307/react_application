@@ -1,11 +1,9 @@
 import React from "react";
 import s from './News.module.css'
 import New from "./New/New";
-import {Navigate} from "react-router-dom";
-import {withAuthRedirect} from "../../Hoc/withAuthRedirect";
 import {Field, reduxForm} from "redux-form";
-import {input, textarea} from "../Utils/FormControl/FormControl";
-import {maxLength15, required} from "../Utils/ValidationField";
+import {textarea} from "../Utils/FormControl/FormControl";
+import {maxLength30, required} from "../Utils/ValidationField";
 
 const News = (props) => {
 
@@ -16,7 +14,8 @@ const News = (props) => {
         return (
             <form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field label={'Enter your news'} name={"newNewText"}  component={textarea} validate={[required, maxLength15]}/>
+                    <Field label={'Enter your news'} name={"newNewText"} component={textarea}
+                           validate={[required, maxLength30]}/>
                 </div>
                 <button>Add news</button>
             </form>
