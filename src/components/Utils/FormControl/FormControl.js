@@ -11,12 +11,12 @@ export const input = ({input, label, meta: {touched, error, warning}}) => {
         </div>
     )
 }
-export const textarea = ({textarea, label, meta: {touched, error, warning}}) => {
+export const textarea = ({input, label, meta: {touched, error, warning}}) => {
     const hasError = touched && error;
     return (
         <div>
             <div className={s.formControl + " " + (hasError ? s.error : "")}>
-                <textarea {...textarea} placeholder={label}/>
+                <textarea {...input} placeholder={label}/>
                 {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
             </div>
         </div>

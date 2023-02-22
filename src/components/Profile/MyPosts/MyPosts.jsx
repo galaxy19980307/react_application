@@ -2,22 +2,28 @@ import React from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
+import {maxLength15, required} from "../../Utils/ValidationField";
+import {input, textarea} from "../../Utils/FormControl/FormControl";
+import login from "../../Login/Login";
 
 const MyPosts = (props) => {
 
-    let postsElements = props.profilePage.postsData.map(p => <Post key={p.id} message={p.message} likeQuantity={p.likeQuantity} img={p.img}/>)
+    let postsElements = props.profilePage.postsData.map(p => <Post key={p.id} message={p.message}
+                                                                   likeQuantity={p.likeQuantity} img={p.img}/>)
 
-       const PostForm = (props) => {
+    const PostForm = (props) => {
+
         return (
             <form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field placeholder={'Enter your post'} name={"newPostText"} component={"textarea"}/>
+                    <Field label={'Enter your post'} name={"newPostText"} validate={[required, maxLength15]}
+                           component={textarea}/>
                 </div>
                 <button>Add Post</button>
             </form>
         )
     }
-    const PostReduxForm = reduxForm({form: 'AddPost'})(PostForm)
+    const PostReduxForm = reduxForm({form:'AddPost'})(PostForm)
     const onAddPost = (values) => {
         props.handleAddPost(values.newPostText);
     }
