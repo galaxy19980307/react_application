@@ -1,7 +1,6 @@
 import React from "react";
 import s from './Header.module.css';
-import {NavLink} from "react-router-dom";
-import {Login} from "../Login/Login";
+import {Navigate, NavLink} from "react-router-dom";
 
 const Header = (props) => {
 
@@ -14,6 +13,7 @@ const Header = (props) => {
             <div>
                 {props.isAuth ?
                     <button onClick={props.logoutUserThunkCreator}>Log Out</button> : undefined
+
                 }
             </div>
 
