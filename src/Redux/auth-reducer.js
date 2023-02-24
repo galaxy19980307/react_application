@@ -35,13 +35,11 @@ export default authReducer;
 
 export const checkAuthThunkCreator = () => {
     return (dispatch) => {
-        dispatch(isLoading(true))
-        authAPI.checkUserAuth()
+        return authAPI.checkUserAuth()
             .then(data => {
                 if (data.resultCode === 0) {
                     let {id, login, email} = data.data
                     dispatch(setUserAuth(id, login, email, true));
-                    dispatch(isLoading(false))
                 }
             })
     }
