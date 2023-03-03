@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./ProfileInfo.module.css"
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
     return (
@@ -12,7 +12,8 @@ const ProfileInfo = (props) => {
                 {props.profile.fullName}
             </div>
             <div>
-                <ProfileStatus status={props.status} updateUserStatusThunkCreator={props.updateUserStatusThunkCreator}/>
+                <ProfileStatusWithHooks status={props.status}
+                                        updateUserStatusThunkCreator={props.updateUserStatusThunkCreator}/>
             </div>
             <div>
                 {props.profile.contacts.vk}
