@@ -10,7 +10,6 @@ const ProfileStatusWithHooks = (props) => {
         },
         [props.status]
     )
-
     const handleDoubleClick = () => {
         setStatusEdit(true)
     }
