@@ -1,30 +1,22 @@
-    import React from "react";
+import React from "react";
 import UserItem from "./UserItem/UserItem";
-import s from './Users.module.css'
+import UsersPaginator from "../Utils/Paginators/UsersPaginator";
 
 const Users = (props) => {
-    let pagesCount = Math.ceil(props.totalCount / props.pageSize);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
     return (
         <div>
             <div>
-                {pages.map(p => {
-                    return <span className={props.currentPage === p && s.selectedPage} onClick={() => {
-                        props.onPageChanged(p)
-                    }}>{p}</span>
-                })}
+                <UsersPaginator totalCount={props.totalCount} pageSize={props.pageSize} currentPage={props.currentPage}
+                                onPageChanged={props.onPageChanged}/>
             </div>
             <div>
                 {props.users.map(user => <UserItem followingInProgress={props.followingInProgress}
-                                                             key={user.id} id={user.id}
-                                                             photos={user.photos.small}
-                                                             name={user.name}
-                                                             location={user.location}
-                                                             followed={user.followed}
-                                                             changeFollowThunkCreator={props.changeFollowThunkCreator}/>)}
+                                                   key={user.id} id={user.id}
+                                                   photos={user.photos.small}
+                                                   name={user.name}
+                                                   location={user.location}
+                                                   followed={user.followed}
+                                                   changeFollowThunkCreator={props.changeFollowThunkCreator}/>)}
             </div>
         </div>
 

@@ -9,18 +9,10 @@ import {compose} from "redux";
 let mapStateToProps = (state) => {
 
     return {
-        dialogsPage: state.dialogsPage
+        dialogsData: state.dialogsPage.dialogsData,
+        messagesData: state.dialogsPage.messagesData
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-
-    return {
-
-        handleAddMessage: (newMessageBody) => {
-            dispatch(addMessageActionCreator(newMessageBody));
-        },
-    }
-}
-export default compose(connect(mapStateToProps, mapDispatchToProps),
+export default compose(connect(mapStateToProps,{addMessageActionCreator} ),
     withAuthRedirect)(Dialogs)

@@ -5,14 +5,14 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import Preloader from "../Preloader/Preloader";
 
 
-const Profile = (props) => {
-    if (!props.profile) {
+const Profile = ({profile, status, updateUserStatusThunkCreator}) => {
+    if (!profile) {
         return <Preloader/>
     }
     return (
         <div className={s.content}>
-            <ProfileInfo profile={props.profile} status={props.status}
-                         updateUserStatusThunkCreator={props.updateUserStatusThunkCreator}/>
+            <ProfileInfo profile={profile} status={status}
+                         updateUserStatusThunkCreator={updateUserStatusThunkCreator}/>
             <MyPostsContainer/>
         </div>
     )

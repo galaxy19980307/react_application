@@ -1,4 +1,9 @@
 {
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-leaflet|@react-leaflet|d3-*|axios))"
+    ]
+  },
   "name": "my-app-1",
   "version": "0.1.0",
   "private": true,

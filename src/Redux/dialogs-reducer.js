@@ -26,7 +26,7 @@ const dialogsReducer = (state = initialState, action) => {
             };
             return { // возвращается копия стейта
                 ...state,
-                messagesData: [...state.messagesData, newMessage],
+                messagesData: [...state.messagesData, newMessage]
             };
         }
         default:

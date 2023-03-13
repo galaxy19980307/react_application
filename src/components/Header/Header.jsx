@@ -1,18 +1,18 @@
 import React from "react";
 import s from './Header.module.css';
-import {Navigate, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
-const Header = (props) => {
+const Header = ({login, isAuth, logoutUserThunkCreator}) => {
 
     return (
         <div>
             <div className={s.login}>
-                {props.isAuth ? props.login
+                {isAuth ? login
                     : <NavLink to={"/login"}>Login</NavLink>}
             </div>
             <div>
-                {props.isAuth ?
-                    <button onClick={props.logoutUserThunkCreator}>Log Out</button> : undefined
+                {isAuth ?
+                    <button onClick={logoutUserThunkCreator}>Log Out</button> : undefined
 
                 }
             </div>

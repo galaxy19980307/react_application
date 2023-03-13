@@ -67,48 +67,34 @@ export const setFollowingProgress = (followingInProgress, userId) => ({
 
 export default usersReducer;
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
-    return (dispatch) => {
-        dispatch(isLoading(true))
-        usersAPI.getUsers(currentPage, pageSize)
-            .then(data => {
-                dispatch(setUsers(data.items));
-                dispatch(saveUsersTotalCount(data.totalCount));
-                dispatch(isLoading(false))
-            })
-    }
+export const getUsersThunkCreator = (currentPage, pageSize) => async (dispatch) => {
+    dispatch(isLoading(true))
+    let data = await usersAPI.getUsers(currentPage, pageSize)
+    dispatch(setUsers(data.items));
+    dispatch(saveUsersTotalCount(data.totalCount));
+    dispatch(isLoading(false))
 }
-export const setCurrentPageThunkCreator = (p, pageSize) => {
-    return (dispatch) => {
-        dispatch(isLoading(true))
-        dispatch(setPageUsers(p))
-        usersAPI.getUsers(p, pageSize)
-            .then(data => {
-                dispatch(setUsers(data.items));
-                dispatch(isLoading(false))
-            })
-    }
+export const setCurrentPageThunkCreator = (p, pageSize) => async (dispatch) => {
+    dispatch(isLoading(true))
+    dispatch(setPageUsers(p))
+    let data = await usersAPI.getUsers(p, pageSize)
+    dispatch(setUsers(data.items));
+    dispatch(isLoading(false))
 }
 
-export const changeFollowThunkCreator = (followed, id) => {
-    return (dispatch) => {
-        dispatch(setFollowingProgress(true, id))
-        if (followed) {
-            usersAPI.followUser(id)
-                .then(data => {
-                    if (data?.resultCode === 0) {
-                        dispatch(setFollowingProgress(false, id))
-                        dispatch(changeFollow(id))
-                    }
-                })
-        } else {
-            usersAPI.unfollowUser(id)
-                .then(data => {
-                    if (data?.resultCode === 0) {
-                        dispatch(setFollowingProgress(false, id))
-                        dispatch(changeFollow(id))
-                    }
-                })
+export const changeFollowThunkCreator = (followed, id) => async (dispatch) => {
+    dispatch(setFollowingProgress(true, id))
+    if (followed) {
+        let data = await usersAPI.followUser(id)
+        if (data?.resultCode === 0) {
+            dispatch(setFollowingProgress(false, id))
+            dispatch(changeFollow(id))
+        }
+    } else {
+        let data = await usersAPI.unfollowUser(id)
+        if (data?.resultCode === 0) {
+            dispatch(setFollowingProgress(false, id))
+            dispatch(changeFollow(id))
         }
     }
 }

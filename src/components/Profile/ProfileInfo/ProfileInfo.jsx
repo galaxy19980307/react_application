@@ -2,21 +2,21 @@ import React from "react";
 import s from "./ProfileInfo.module.css"
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
-const ProfileInfo = (props) => {
+const ProfileInfo = ({profile, status, updateUserStatusThunkCreator}) => {
     return (
         <div>
             <div className={s.avatarDescription}>
-                <img src={props.profile.photos.large}/>
+                <img src={profile.photos.large}/>
             </div>
             <div className={s.fullName}>
-                {props.profile.fullName}
+                {profile.fullName}
             </div>
             <div>
-                <ProfileStatusWithHooks status={props.status}
-                                        updateUserStatusThunkCreator={props.updateUserStatusThunkCreator}/>
+                <ProfileStatusWithHooks status={status}
+                                        updateUserStatusThunkCreator={updateUserStatusThunkCreator}/>
             </div>
             <div>
-                {props.profile.contacts.vk}
+                {profile.contacts.vk}
             </div>
         </div>
     )

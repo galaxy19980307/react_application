@@ -36,7 +36,5 @@ const News = (props) => {
             </div>
         </div>
     )
-
 }
-
 export default News;

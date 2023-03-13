@@ -10,10 +10,9 @@ import s from './Login.module.css'
 
 class LoginContainer extends React.Component {
     render() {
-        const LoginForm = (props) => {
-            console.log(props)
+        const LoginForm = ({handleSubmit, error}) => {
             return (
-                <form onSubmit={props.handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <div>
                         <Field label={'Login'} name={"login"} component={input} validate={[required, maxLength30]}/>
                     </div>
@@ -24,8 +23,8 @@ class LoginContainer extends React.Component {
                     <div>
                         <Field type={"checkbox"} name={"rememberMe"} component={"input"}/>Remember me
                     </div>
-                    {props.error && <div className={s.error}>
-                        {props.error}
+                    {error && <div className={s.error}>
+                        {error}
                     </div>}
                     <button>Log In</button>
                 </form>
@@ -53,8 +52,7 @@ class LoginContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth,
-        isFetching: state.auth.isFetching,
+        isAuth: state.auth.isAuth
     }
 }
 
