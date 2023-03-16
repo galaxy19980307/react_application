@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css'
 import Nav from "./components/Nav/Nav";
-import {Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import NewsContainer from "./components/News/NewsContainer";
@@ -11,8 +11,9 @@ import MusicContainer from "./components/Music/MusicContainer";
 import SettingsContainer from "./components/Settings/SettingsContainer";
 import Login from "./components/Login/Login";
 import {setUserInitializedThunkCreator} from "./Redux/app-reducer";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
+import store from "./Redux/redux-store";
 
 class App extends React.Component {
     componentDidMount() {
@@ -47,4 +48,14 @@ class App extends React.Component {
 let mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
-export default compose(withRouter, connect(mapStateToProps, {setUserInitializedThunkCreator}))(App);
+const AppContainer = compose(withRouter, connect(mapStateToProps, {setUserInitializedThunkCreator}))(App);
+
+export const MainApp = () => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer/>
+            </Provider>
+        </BrowserRouter>
+    )
+}

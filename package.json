@@ -4,6 +4,7 @@
       "node_modules/(?!(react-leaflet|@react-leaflet|d3-*|axios))"
     ]
   },
+
   "name": "my-app-1",
   "version": "0.1.0",
   "private": true,
@@ -47,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-test-renderer": "^18.2.0"
   }
 }

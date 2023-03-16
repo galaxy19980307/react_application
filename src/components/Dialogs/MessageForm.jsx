@@ -15,4 +15,4 @@ const MessageForm = (props) => {
         </form>
     )
 }
-export const MessageReduxForm = reduxForm({form: 'DialogAddMessage'})(MessageForm)
+export const MessageReduxForm = reduxForm({form: 'DialogAddMessage'})(React.memo(MessageForm))

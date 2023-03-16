@@ -23,10 +23,12 @@ const Dialogs = ({dialogsData, messagesData, addMessageActionCreator}) => {
                 <div className={s.messagesItems}>
                     {messagesElements}
                 </div>
-                <div><MessageReduxForm onSubmit={onAddMessage}/>
+                <div>
+                    <MessageReduxForm onSubmit={onAddMessage}/>
                 </div>
             </div>
         </div>
     )
 }
-export default Dialogs;
+
+export default React.memo(Dialogs);
