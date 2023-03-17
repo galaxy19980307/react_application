@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/react_application/static/css/main.aeb102b7.css",
-    "main.js": "/react_application/static/js/main.546140ee.js",
+    "main.js": "/react_application/static/js/main.2d9f03ed.js",
     "static/css/942.dfa13f0f.chunk.css": "/react_application/static/css/942.dfa13f0f.chunk.css",
     "static/js/942.df976cbd.chunk.js": "/react_application/static/js/942.df976cbd.chunk.js",
     "static/js/787.85a40384.chunk.js": "/react_application/static/js/787.85a40384.chunk.js",
     "static/media/rainbow-spinner-loading.gif": "/react_application/static/media/rainbow-spinner-loading.b00697b9643b4f211a0e.gif",
     "index.html": "/react_application/index.html",
     "main.aeb102b7.css.map": "/react_application/static/css/main.aeb102b7.css.map",
-    "main.546140ee.js.map": "/react_application/static/js/main.546140ee.js.map",
+    "main.2d9f03ed.js.map": "/react_application/static/js/main.2d9f03ed.js.map",
     "942.dfa13f0f.chunk.css.map": "/react_application/static/css/942.dfa13f0f.chunk.css.map",
     "942.df976cbd.chunk.js.map": "/react_application/static/js/942.df976cbd.chunk.js.map",
     "787.85a40384.chunk.js.map": "/react_application/static/js/787.85a40384.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.aeb102b7.css",
-    "static/js/main.546140ee.js"
+    "static/js/main.2d9f03ed.js"
   ]
 }
