@@ -23,7 +23,7 @@ const Paginator = ({totalCount, pageSize, currentPage, onPageChanged, portionSiz
 
     return (
         <div>
-            {currentPage > portionSize &&
+            {currentPortion > 1 &&
                 <div>
                     <button onClick={handlePrev}>Prev</button>
                 </div>

@@ -1,13 +1,13 @@
 import {instance} from "./instance";
 
 export const profileAPI = {
-    getUserProfile(userId =27614 ) {
+    getUserProfile(userId = 27614) {
         return instance.get(`profile/${userId}`)
             .then(response => {
                 return response.data;
             })
     },
-    getUserStatus(userId=27614) {
+    getUserStatus(userId = 27614) {
         return instance.get(`profile/status/${userId}`)
             .then(response => {
                 return response.data;
@@ -19,4 +19,17 @@ export const profileAPI = {
                 return response.data;
             })
     },
+    setUserAvatar(photos) {
+        const formData = new FormData();
+        formData.append('image', photos);
+        return instance.put(`profile/photo`, formData, {
+                headers: {
+                    "content-type": "multipart/form-data"
+                }
+            }
+        )
+            .then(response => {
+                return response.data;
+            })
+    }
 }

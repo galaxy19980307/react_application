@@ -3,7 +3,7 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
     getUserProfileThunkCreator,
-    getUserStatusThunkCreator,
+    getUserStatusThunkCreator, setAvatarThunkCreator,
     updateUserStatusThunkCreator
 } from "../../Redux/profile-reducer";
 import {useParams} from 'react-router-dom';
@@ -12,15 +12,26 @@ import {compose} from "redux";
 
 
 class ProfileContainer extends React.Component {
-    componentDidMount() {
+    refreshProfileWithStatus (){
         let userId = this.props.match.params.userId;
         this.props.getUserProfileThunkCreator(userId);
         this.props.getUserStatusThunkCreator(userId)
     }
+    componentDidMount() {
+         this.refreshProfileWithStatus()
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+         if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.refreshProfileWithStatus()
+        }
+    }
 
     render() {
         return (<>
-                <Profile {...this.props}/>
+                <Profile {...this.props}
+                owner={!this.props.match.params.userId}
+                         setAvatarThunkCreator={this.props.setAvatarThunkCreator}/>
             </>
         )
     }
@@ -40,6 +51,6 @@ export function withRouter(Children) {
     }
 }
 
-export default compose(connect(mapStateToProps, {getUserProfileThunkCreator, getUserStatusThunkCreator, updateUserStatusThunkCreator}),
+export default compose(connect(mapStateToProps, {getUserProfileThunkCreator, getUserStatusThunkCreator, updateUserStatusThunkCreator,setAvatarThunkCreator}),
     withAuthRedirect,
     withRouter)(ProfileContainer)

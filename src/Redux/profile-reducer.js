@@ -3,6 +3,7 @@ import {profileAPI} from "../DAL/profileAPI";
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
+const SET_USER_AVATAR = 'SET_USER_AVATAR';
 const DELETE_POST = 'DELETE_POST';
 
 let initialStateContact = {
@@ -79,10 +80,16 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.profile
             }
         }
-            case SET_USER_STATUS: {
+        case SET_USER_STATUS: {
             return {
                 ...state,
                 status: action.status
+            }
+        }
+        case SET_USER_AVATAR: {
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
             }
         }
         default:
@@ -93,6 +100,7 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText});
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+export const setUserAvatar = (photos) => ({type: SET_USER_AVATAR, photos})
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status})
 export default profileReducer;
 
@@ -105,6 +113,14 @@ export const getUserStatusThunkCreator = (userId) => async (dispatch) => {
     let data = await profileAPI.getUserStatus(userId)
     dispatch(setUserStatus(data));
 }
+
+export const setAvatarThunkCreator = (photos) => async (dispatch) => {
+    let data = await profileAPI.setUserAvatar(photos)
+    if (data.resultCode === 0) {
+        dispatch(setUserAvatar(data.data.photos));
+    }
+}
+
 export const updateUserStatusThunkCreator = (status) => async (dispatch) => {
     let data = await profileAPI.updateUserStatus(status)
     if (data?.resultCode === 0) {

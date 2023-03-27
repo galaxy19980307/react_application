@@ -1,6 +1,8 @@
 import React from "react";
 import s from './User.module.css'
 import {NavLink} from "react-router-dom";
+import userPhoto from "../../../assets/images/userNull.png";
+
 
 const UserItem = (props) => {
     let btnText = props.followed ? 'Unfollow' : 'Follow'
@@ -8,7 +10,7 @@ const UserItem = (props) => {
         <div className={s.user}>
             <div className={s.avatarUser}>
                 <NavLink to={`/profile/${props.id}`}>
-                    <img src={props.photos != null ? props.photos : 'logo.jpg'} alt='Нет авки'/>
+                    <img src={props.photos != null ? props.photos : userPhoto} alt='Нет фото'/>
                 </NavLink>
             </div>
             <div>
