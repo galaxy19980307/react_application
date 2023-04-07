@@ -1,8 +1,10 @@
 import {profileAPI} from "../DAL/profileAPI";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
+const SET_USER_INFORMATION = 'SET_USER_INFORMATION';
 const SET_USER_AVATAR = 'SET_USER_AVATAR';
 const DELETE_POST = 'DELETE_POST';
 
@@ -50,7 +52,8 @@ let initialState = {
         userId: null,
         photos: initialStatePhoto
     },
-    status: ''
+    status: '',
+    profileSave: false,
 
 }
 
@@ -102,6 +105,7 @@ export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setUserAvatar = (photos) => ({type: SET_USER_AVATAR, photos})
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status})
+export const setUserInformation = (profile) => ({type: SET_USER_INFORMATION, profile})
 export default profileReducer;
 
 export const getUserProfileThunkCreator = (userId) => async (dispatch) => {
@@ -125,5 +129,16 @@ export const updateUserStatusThunkCreator = (status) => async (dispatch) => {
     let data = await profileAPI.updateUserStatus(status)
     if (data?.resultCode === 0) {
         dispatch(setUserStatus(status));
+    }
+}
+export const setUserInformationThunkCreator = (profile) => async (dispatch, getState) => {
+    const userId = getState().auth.userId
+    let data = await profileAPI.setUserInformation(profile)
+    if (data.resultCode === 0) {
+        dispatch(getUserProfileThunkCreator(userId))
+    } else {
+        let message = data.messages?.length > 0 ? data.messages[0] : "Some error"
+        dispatch(stopSubmit("profile", {_error: message}))
+        return Promise.reject(data.messages[0]);
     }
 }

@@ -31,5 +31,12 @@ export const profileAPI = {
             .then(response => {
                 return response.data;
             })
+    },
+    setUserInformation(profile) {
+        return instance.put(`profile`, profile)
+            .then(response => {
+                console.log(response)
+                return response.data;
+            })
     }
 }

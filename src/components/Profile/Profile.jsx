@@ -5,7 +5,8 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import Preloader from "../Preloader/Preloader";
 
 
-const Profile = ({profile, status, updateUserStatusThunkCreator, owner, setAvatarThunkCreator}) => {
+
+const Profile = ({profile, status, updateUserStatusThunkCreator, owner, setAvatarThunkCreator, setUserInformationThunkCreator, profileSave}) => {
     if (!profile) {
         return <Preloader/>
     }
@@ -13,9 +14,10 @@ const Profile = ({profile, status, updateUserStatusThunkCreator, owner, setAvata
         <div className={s.content}>
             <ProfileInfo profile={profile} status={status} owner={owner}
                          updateUserStatusThunkCreator={updateUserStatusThunkCreator}
-                         setAvatarThunkCreator={setAvatarThunkCreator}/>
+                         setAvatarThunkCreator={setAvatarThunkCreator} setUserInformationThunkCreator={setUserInformationThunkCreator} profileSave={profileSave}/>
             <MyPostsContainer/>
         </div>
     )
 }
 export default Profile;
+

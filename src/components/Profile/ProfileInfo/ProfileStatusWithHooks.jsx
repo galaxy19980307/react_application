@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import s from "./ProfileInfo.module.css"
+import s from "./ProfileStatusWithHooks.module.css"
 
 const ProfileStatusWithHooks = (props) => {
     const [statusEdit, setStatusEdit] = useState(false);
@@ -24,10 +24,10 @@ const ProfileStatusWithHooks = (props) => {
 
     return (
         <div>
+            <b>Status:</b>
             {!statusEdit &&
-                <div>
-                    <button onDoubleClick={handleDoubleClick}>{props.status || "Hello"} </button>
-                </div>}
+                <button className={s.statusButton} onDoubleClick={handleDoubleClick}>{props.status || "Hello"} </button>
+            }
             {statusEdit &&
                 <div>
                     <input onChange={onStatusChanged} className={s.button} autoFocus={true}

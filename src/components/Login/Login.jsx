@@ -9,6 +9,7 @@ import s from './Login.module.css'
 
 
 class LoginContainer extends React.Component {
+
     render() {
         const LoginForm = ({handleSubmit, error}) => {
             return (
@@ -18,7 +19,7 @@ class LoginContainer extends React.Component {
                     </div>
                     <div>
                         <Field label={'Password'} name={"password"} component={input} validate={[required, maxLength30]}
-                               type={"Password"}/>
+                               type={"password"}/>
                     </div>
                     <div>
                         <Field type={"checkbox"} name={"rememberMe"} component={"input"}/>Remember me
@@ -30,8 +31,6 @@ class LoginContainer extends React.Component {
                 </form>
             )
         }
-
-
         const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
         if (this.props.isAuth) {
@@ -41,7 +40,6 @@ class LoginContainer extends React.Component {
             console.log(formData)
             this.props.loginUserThunkCreator(formData.login, formData.password, formData.rememberMe)
         }
-
         return <div>
             <h1>LOGIN</h1>
             <LoginReduxForm onSubmit={onSubmit}/>

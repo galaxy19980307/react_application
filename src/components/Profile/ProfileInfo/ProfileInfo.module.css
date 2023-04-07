@@ -1,18 +1,38 @@
+.profileDescription {
+    display: flex;
+    flex-direction: column;
+    align-items: revert;
+    padding: 20px;
+    border-radius: 5px;
+    line-height: 35px;
+
+}
+
 .avatarDescription {
-    padding: .7em 1.5em;
+    /*padding: .7em 1.5em;*/
 }
 
 .avatarDescription img {
     width: inherit;
 }
+
 .myAvatarDescription img {
     width: inherit;
 }
+
 .fullName {
-    font-weight: bold;
-    padding: .7em 1.5em;
-    font-family: "Arial Black";
+    /*font-weight: bold;*/
+    /*padding: .7em 1.5em;*/
+    /*font-family: "Arial Black";*/
 }
+
+.socialNetworks {
+    overflow-wrap: break-word;
+}
+.error {
+    border: solid red 2px
+}
+
 .button {
     color: #fff; /* цвет текста */
     text-decoration: none; /* убирать подчёркивание у ссылок */
