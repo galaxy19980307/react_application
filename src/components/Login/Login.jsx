@@ -9,9 +9,9 @@ import s from './Login.module.css'
 
 
 class LoginContainer extends React.Component {
-
     render() {
-        const LoginForm = ({handleSubmit, error}) => {
+        const LoginForm = ({handleSubmit, error, captchaUrl}) => {
+            console.log(captchaUrl)
             return (
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -24,12 +24,21 @@ class LoginContainer extends React.Component {
                     <div>
                         <Field type={"checkbox"} name={"rememberMe"} component={"input"}/>Remember me
                     </div>
-                    {error && <div className={s.error}>
-                        {error}
-                    </div>}
+                    {error &&
+                        <div className={s.error}>
+                            {error}
+                        </div>}
+
+                    {captchaUrl &&
+                        <div>
+                            <img src={captchaUrl}/>
+                            <div> <Field placeholder={'Enter code'} name={"captcha"} component={input} validate={[required]} /></div>
+                        </div>}
+
                     <button>Log In</button>
                 </form>
             )
+
         }
         const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
@@ -38,11 +47,11 @@ class LoginContainer extends React.Component {
         }
         const onSubmit = (formData) => {
             console.log(formData)
-            this.props.loginUserThunkCreator(formData.login, formData.password, formData.rememberMe)
+            this.props.loginUserThunkCreator(formData.login, formData.password, formData.rememberMe, formData.captcha)
         }
         return <div>
             <h1>LOGIN</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm onSubmit={onSubmit} captchaUrl={this.props.captchaUrl}/>
         </div>
 
     }
@@ -50,7 +59,8 @@ class LoginContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        captchaUrl: state.auth.captchaUrl
     }
 }
 

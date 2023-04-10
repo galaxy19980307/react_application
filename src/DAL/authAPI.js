@@ -8,8 +8,8 @@ export const authAPI = {
                 return response.data;
             })
     },
-    loginUser(email, password, rememberMe= false) {
-        return instance.post(`${authEndpoint}/login`, {email, password, rememberMe})
+    loginUser(email, password, rememberMe= false, captcha= null) {
+        return instance.post(`${authEndpoint}/login`, {email, password, rememberMe, captcha})
             .then(response => {
                 return response.data;
             })
@@ -19,5 +19,8 @@ export const authAPI = {
             .then(response => {
                 return response.data;
             })
+    },
+    getCaptchaUrl() {
+        return instance.get(`security/get-captcha-url`);
     }
 }
