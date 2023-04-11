@@ -35,7 +35,6 @@ export const profileAPI = {
     setUserInformation(profile) {
         return instance.put(`profile`, profile)
             .then(response => {
-                console.log(response)
                 return response.data;
             })
     }

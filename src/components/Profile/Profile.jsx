@@ -6,7 +6,8 @@ import Preloader from "../Preloader/Preloader";
 
 
 
-const Profile = ({profile, status, updateUserStatusThunkCreator, owner, setAvatarThunkCreator, setUserInformationThunkCreator, profileSave}) => {
+const Profile = ({profile, status, updateUserStatusThunkCreator, owner,
+                     setAvatarThunkCreator, setUserInformationThunkCreator, profileSave}) => {
     if (!profile) {
         return <Preloader/>
     }

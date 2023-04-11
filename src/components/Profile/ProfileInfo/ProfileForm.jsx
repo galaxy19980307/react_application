@@ -1,20 +1,29 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
 import s from "./ProfileInfo.module.css";
+import userPhoto from "../../../assets/images/userNull.png";
 
-const ProfileForm = ({handleSubmit, profile, error}) => {
+const ProfileForm = ({handleSubmit, profile, error, setAvatarThunkCreator, owner}) => {
     const contactsLinks = Object.entries(profile.contacts).map(([serviceLink, link]) => (
         <div>
             <b>{serviceLink}</b>:<Field placeholder={serviceLink}
-                                        name={"contacts."+serviceLink}
+                                        name={"contacts." + serviceLink}
                                         component={"input"} validate={[]}/>
         </div>
     ))
+    const handleImageUpload = (event) => {
+        if (event.target.files) {
+            setAvatarThunkCreator(event.target.files[0])
+        }
+    }
     return (
         <form className={s.avatarDescription} onSubmit={handleSubmit}>
             <div>
                 <button onClick={handleSubmit}>Save</button>
             </div>
+            <img src={profile.photos?.large != null ? profile?.photos.large : userPhoto}
+                 alt='Нет фото'/>
+            <div> {owner ? <input type={"file"} onChange={handleImageUpload}/> : null} </div>
             <div className={s.fullName}>
                 <b>Name</b>: <Field placeholder={'Full Name'} name={"fullName"} component={"input"}
                                     validate={[]}/>

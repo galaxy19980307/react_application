@@ -11,6 +11,7 @@ const ProfileStatusWithHooks = (props) => {
         [props.status]
     )
     const handleDoubleClick = () => {
+        props.owner &&
         setStatusEdit(true)
     }
 
@@ -24,7 +25,8 @@ const ProfileStatusWithHooks = (props) => {
 
     return (
         <div>
-            <b>Status:</b>
+            <b className={s.statusName} onDoubleClick={handleDoubleClick}>Status:</b>
+            <div>
             {!statusEdit &&
                 <button className={s.statusButton} onDoubleClick={handleDoubleClick}>{props.status || "Hello"} </button>
             }
@@ -33,6 +35,7 @@ const ProfileStatusWithHooks = (props) => {
                     <input onChange={onStatusChanged} className={s.button} autoFocus={true}
                            onBlur={handleBlur} value={status}/>
                 </div>}
+        </div>
         </div>
     )
 
