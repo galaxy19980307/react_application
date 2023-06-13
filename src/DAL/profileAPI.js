@@ -22,7 +22,7 @@ export const profileAPI = {
     setUserAvatar(photos) {
         const formData = new FormData();
         formData.append('image', photos);
-        return instance.put(`profile/photo`, formData, {
+        return instance.get(`profile/photo`, formData, {
                 headers: {
                     "content-type": "multipart/form-data"
                 }

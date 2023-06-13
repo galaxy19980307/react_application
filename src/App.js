@@ -14,15 +14,33 @@ import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import store from "./Redux/redux-store";
 import Preloader from "./components/Preloader/Preloader";
-import ErrorBoundary from "./components/Utils/ErrorBoundary";
+
+// TODO
+class ErrorBoundary extends React.Component {
+    render() {
+        return <div> Oops! Something went wrong. </div>
+    }
+}
+
 
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
 
 class App extends React.Component {
+    catchAllUnhandledErrors = () => {
+        debugger
+        return (<Navigate to={'/error'}/>)
+    }
+
 
     componentDidMount() {
         this.props.setUserInitializedThunkCreator()
+        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+
     }
 
     render() {
@@ -35,9 +53,8 @@ class App extends React.Component {
                 <Nav/>
                 <div className='app-wrapper-content'>
                     <React.Suspense fallback={<Preloader/>}>
-                        <ErrorBoundary>
                         <Routes>
-                            <Route path={"/"} element={ <Navigate to={'/profile'}/> }/>
+                            <Route path={"/"} element={<Navigate to={'/profile'}/>}/>
                             <Route path={"/login"} element={<Login/>}/>
                             <Route path="/dialogs/*" element={<DialogsContainer/>}/>
                             <Route path="/profile" element={<ProfileContainer/>}>
@@ -45,11 +62,11 @@ class App extends React.Component {
                             </Route>
                             <Route path="/news" element={<NewsContainer/>}/>
                             <Route path="/music" element={<MusicContainer/>}/>
+                            <Route path="/error" element={<ErrorBoundary/>}/>
                             <Route path="/settings" element={<SettingsContainer/>}/>
                             <Route path="/users" element={<UsersContainer/>}/>
-                            <Route path="*" element={<h2>Page not found</h2>} />
+                            <Route path="*" element={<h2>Page not found</h2>}/>
                         </Routes>
-                        </ErrorBoundary>
                     </React.Suspense>
                 </div>
             </div>
@@ -60,7 +77,7 @@ class App extends React.Component {
 let mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
-const AppContainer = compose( withRouter, connect(mapStateToProps, {setUserInitializedThunkCreator}))(App);
+const AppContainer = compose(withRouter, connect(mapStateToProps, {setUserInitializedThunkCreator}))(App);
 
 export const MainApp = () => {
     return (
@@ -71,3 +88,4 @@ export const MainApp = () => {
         </BrowserRouter>
     )
 }
+
